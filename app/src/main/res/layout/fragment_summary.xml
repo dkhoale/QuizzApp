@@ -6,21 +6,44 @@
     android:orientation="vertical"
     tools:context=".ui.SummaryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tv_summary_total_questions"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_summary_correct_ans"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_summary_wrong_ans"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_summary_your_score"
+        android:background="@color/purple_200"
+        android:textStyle="bold"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
     <Button
         android:id="@+id/btn_summary_try_again"
-        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Try Again" />
 
     <Button
         android:id="@+id/btn_summary_result_analysis"
-        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Result Analysis" />
 

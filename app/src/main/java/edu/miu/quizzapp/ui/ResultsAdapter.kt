@@ -1,5 +1,6 @@
 package edu.miu.quizzapp.ui
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -15,8 +16,9 @@ class ResultsAdapter(private val quizResults: List<QuizResult>) : RecyclerView.A
 
     override fun getItemCount() =quizResults.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ResultsAdapter.ResultViewHolder, position: Int) {
-        holder.binding.textViewTitle.text = quizResults[position].question
+        holder.binding.textViewTitle.text = (position + 1).toString() + ". " +quizResults[position].question
         holder.binding.textViewCorrectAnswer.text = quizResults[position].correctAnswer
         holder.binding.textViewUserAnswer.text = quizResults[position].userAnswer
     }

@@ -26,6 +26,9 @@ class SummaryFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             quizResults = SummaryFragmentArgs.fromBundle(it).quizResults
+            var correctAnswers = analyzeResult(quizResults)
+            var totalQuestions = quizResults?.size
+            var wrongAnswers = totalQuestions?.minus(correctAnswers)
 
             binding.apply {
                 btnSummaryResultAnalysis.setOnClickListener {
@@ -36,8 +39,17 @@ class SummaryFragment : BaseFragment() {
                 btnSummaryTryAgain.setOnClickListener {
                     findNavController().navigate(SummaryFragmentDirections.actionSummaryFragmentToQuizFragment())
                 }
+
+                tvSummaryTotalQuestions.text = "Total Questions: $totalQuestions"
+                tvSummaryCorrectAns.text = "Correct Answers: $correctAnswers"
+                tvSummaryWrongAns.text = "Wrong Answers: $wrongAnswers"
+                tvSummaryYourScore.text = "Your Score: $correctAnswers/$totalQuestions"
             }
         }
+    }
+
+    private fun analyzeResult(quizResults: Array<QuizResult>?): Int {
+        return quizResults?.count { it.correctAnswer == it.userAnswer } ?: 0
     }
 
 }

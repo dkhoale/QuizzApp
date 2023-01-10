@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="edu.miu.quizzapp.ui.HomeFragment"
-        android:label="fragment_home"
+        android:label="Quiz Home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_quizFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/quizFragment"
         android:name="edu.miu.quizzapp.ui.QuizFragment"
-        android:label="fragment_quiz"
+        android:label="Questions"
         tools:layout="@layout/fragment_quiz" >
         <action
             android:id="@+id/action_quizFragment_to_homeFragment"
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/summaryFragment"
         android:name="edu.miu.quizzapp.ui.SummaryFragment"
-        android:label="fragment_summary"
+        android:label="Result Summary"
         tools:layout="@layout/fragment_summary" >
         <action
             android:id="@+id/action_summaryFragment_to_resultDetailFragment"
@@ -47,7 +47,7 @@
     <fragment
         android:id="@+id/resultDetailFragment"
         android:name="edu.miu.quizzapp.ui.ResultDetailFragment"
-        android:label="fragment_result_detail"
+        android:label="Result Analysis"
         tools:layout="@layout/fragment_result_detail" >
         <action
             android:id="@+id/action_resultDetailFragment_to_quizFragment"

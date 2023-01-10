@@ -22,6 +22,7 @@ class QuizFragment : BaseFragment() {
     private var questions: List<QuestionWithAnswers> = ArrayList<QuestionWithAnswers>()
     private var quizResults: ArrayList<QuizResult> = ArrayList()
     private var checkedAnswer: String? = null
+    private var MAX_QUESTIONS_NUMBER: Int = 3
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +48,7 @@ class QuizFragment : BaseFragment() {
             btnQuizNext.setOnClickListener {
                 updateQuizResult()
                 rgQuizAnswerGrp.clearCheck()
-                if(mainViewModel.currentQuestionIndex.value!! < 1){
+                if(mainViewModel.currentQuestionIndex.value!! < MAX_QUESTIONS_NUMBER - 1){
                     mainViewModel.updateQuestionIndex()
                 }else {
                     val action = QuizFragmentDirections.actionQuizFragmentToSummaryFragment()

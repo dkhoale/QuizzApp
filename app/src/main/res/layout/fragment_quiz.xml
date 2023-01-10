@@ -10,6 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
         android:id="@+id/tv_quiz_question" />
 
     <RadioGroup
@@ -36,13 +37,15 @@
 
     <Button
         android:id="@+id/btn_quiz_next"
-        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Next" />
 
     <Button
         android:id="@+id/btn_quiz_home"
-        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Home" />
 

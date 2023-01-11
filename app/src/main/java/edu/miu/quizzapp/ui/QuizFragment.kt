@@ -22,7 +22,7 @@ class QuizFragment : BaseFragment() {
     private var questions: List<QuestionWithAnswers> = ArrayList<QuestionWithAnswers>()
     private var checkedAnswer: String = ""
     var checkedId: Int? = null
-    private var MAX_QUESTIONS_NUMBER: Int = 3
+    private var MAX_QUESTIONS_NUMBER: Int = 15
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,7 +78,7 @@ class QuizFragment : BaseFragment() {
 
     private fun updateQuizResult() {
         val currentIndex = mainViewModel.currentQuestionIndex.value?.toInt()!!
-        val checkedAnswer = checkedId?.let { binding.rgQuizAnswerGrp.findViewById<RadioButton>(it).text.toString() }
+        val checkedAnswer = checkedId?.let { binding.rgQuizAnswerGrp.findViewById<RadioButton>(it)?.text?.toString() }
         val quizResult = QuizResult(questions[currentIndex].question.content,
         questions[currentIndex].answers.findLast {
             it.isCorrectAnswer
@@ -89,10 +89,11 @@ class QuizFragment : BaseFragment() {
 
     private fun loadQuiz(){
         if(questions.isNotEmpty()){
-            questions[mainViewModel.currentQuestionIndex.value?.toInt()!!].question.content.also { binding.tvQuizQuestion.text = it }
-            questions[mainViewModel.currentQuestionIndex.value?.toInt()!!].answers[0].title.also { binding.radioButton.text = it }
-            questions[mainViewModel.currentQuestionIndex.value?.toInt()!!].answers[1].title.also { binding.radioButton2.text = it }
-            questions[mainViewModel.currentQuestionIndex.value?.toInt()!!].answers[2].title.also { binding.radioButton3.text = it }
+            val currentIndex = mainViewModel.currentQuestionIndex.value?.toInt()!!
+            questions[currentIndex].question.content.also { binding.tvQuizQuestion.text = "${currentIndex + 1}. $it" }
+            questions[currentIndex].answers[0].title.also { binding.radioButton.text = it }
+            questions[currentIndex].answers[1].title.also { binding.radioButton2.text = it }
+            questions[currentIndex].answers[2].title.also { binding.radioButton3.text = it }
         }
     }
 

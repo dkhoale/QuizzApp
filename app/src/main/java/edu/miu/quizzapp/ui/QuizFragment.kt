@@ -20,8 +20,8 @@ class QuizFragment : BaseFragment() {
     private lateinit var binding: FragmentQuizBinding
     private lateinit var mainViewModel: QuizViewModel
     private var questions: List<QuestionWithAnswers> = ArrayList<QuestionWithAnswers>()
-    private var quizResults: ArrayList<QuizResult> = ArrayList()
-    private var checkedAnswer: String? = null
+    private var checkedAnswer: String = ""
+    var checkedId: Int? = null
     private var MAX_QUESTIONS_NUMBER: Int = 3
 
     override fun onCreateView(
@@ -41,8 +41,12 @@ class QuizFragment : BaseFragment() {
         }
 
         binding.apply {
-            rgQuizAnswerGrp.setOnCheckedChangeListener { group, checkedId ->
-                checkedAnswer = group.findViewById<RadioButton>(checkedId)?.text?.toString() ?: ""
+            rgQuizAnswerGrp.setOnCheckedChangeListener { group, id ->
+                checkedId = id
+                val radioBtn = group.findViewById<RadioButton>(id)
+                if(radioBtn?.text != null){
+                    checkedAnswer = radioBtn.text.toString()
+                }
             }
 
             btnQuizNext.setOnClickListener {
@@ -52,7 +56,7 @@ class QuizFragment : BaseFragment() {
                     mainViewModel.updateQuestionIndex()
                 }else {
                     val action = QuizFragmentDirections.actionQuizFragmentToSummaryFragment()
-                    action.setQuizResults(quizResults.toTypedArray())
+                    action.setQuizResults(mainViewModel.quizResults.toTypedArray())
                    findNavController().navigate(action)
                 }
             }
@@ -74,13 +78,13 @@ class QuizFragment : BaseFragment() {
 
     private fun updateQuizResult() {
         val currentIndex = mainViewModel.currentQuestionIndex.value?.toInt()!!
+        val checkedAnswer = checkedId?.let { binding.rgQuizAnswerGrp.findViewById<RadioButton>(it).text.toString() }
         val quizResult = QuizResult(questions[currentIndex].question.content,
         questions[currentIndex].answers.findLast {
-            println(it)
             it.isCorrectAnswer
         }!!.title,
         checkedAnswer ?: "")
-        quizResults.add(quizResult)
+        mainViewModel.addQuizResult(quizResult)
     }
 
     private fun loadQuiz(){

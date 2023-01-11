@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import edu.miu.quizzapp.databinding.FragmentSummaryBinding
 import edu.miu.quizzapp.model.QuizResult
+import edu.miu.quizzapp.model.QuizViewModel
 
 
 class SummaryFragment : BaseFragment() {
     private lateinit var binding: FragmentSummaryBinding
     private var quizResults: Array<QuizResult>? = null
+    private lateinit var mainViewModel: QuizViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +36,7 @@ class SummaryFragment : BaseFragment() {
             binding.apply {
                 btnSummaryResultAnalysis.setOnClickListener {
                     val action = SummaryFragmentDirections.actionSummaryFragmentToResultDetailFragment()
-                    action.setQuizResults(quizResults)
+                    action.quizResults = quizResults
                     findNavController().navigate(action)
                 }
                 btnSummaryTryAgain.setOnClickListener {
